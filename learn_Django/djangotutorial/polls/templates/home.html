@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Polls App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="m-0 h-screen font-sans text-blue-900 bg-green-100">
+    <div class="flex flex-col flex-1">
+        <!-- Header -->
+         <div class="bg-white px-3 py-4 border-b border-gray-300 flex">
+            <h2 class="text-2xl font-bold">My Polls App</h2>
+            <a href="{% url 'create_info' %}" class="ml-4 px-4 py-1.5 bg-green-500 text-white rounded-md hover:bg-green-600">Create New Poll</a>
+            <input id="searchInput" type="text" placeholder="Search..." 
+            class="w-73 px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ml-auto">
+            <button id="btnSearch" class="bg-blue-500 text-white px-4 py-1.5 rounded-md ml-2 hover:bg-blue-600">Search</button>
+        </div>
+         {% for info in inf_list %} 
+          <div class="bg-white border-b border-gray-300 p-3 mb-3 rounded-md flex justify-between" >
+            <div class="max-w-[70%]">
+                    
+                    <a href="{% url 'detail_info' info.id %}" class="font-bold">{{ info.title }}</a>
+                    <div class="text-gray-800">{{info.message}}</div>
+            {%if info.status == True %}  
+                    <div class="text-gray-800">Status: Active</div>
+            {%else%}
+                    <div class="text-gray-800">Status: Inactive</div>
+            {% endif %}
+                </div>
+                <div class="text-gray-500">{{info.time}}</div>
+                   <form method="POST" action="{% url 'delete_info' info.id %}">
+                         <!-- Dung de xu ly form -->
+                            {% csrf_token %}  
+                 <button type="submit" class="bg-red-500 text-white px-4 py-1.5
+                 rounded-md hover:bg-red-600" onclick="return confirm('Are you sure you want to delete this poll?');">Delete
+                 </button>
+                    </form>
+          </div>
+          {% endfor %}
+    </div>
+    
+</body>
+</html>
+<script>
+document.getElementById('btnSearch').addEventListener('click',function(){
+    const query = document.getElementById('searchInput').value;
+    if(query.trim() === '') {
+        alert('Please enter a search query.');
+        return;
+    }
+    else {
+    window.location.href = `/?q=${query}`;
+    }
+}
+)
+</script>
