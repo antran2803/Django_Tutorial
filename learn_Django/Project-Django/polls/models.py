@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.contrib import admin
 # Create your models here.
 class Question(models.Model):
-    question_text = models.CharField(max_length = 255)
+    question_text = models.CharField('Question Title',max_length = 255)
     pub_date = models.DateTimeField('date published')
    
     def __str__(self):
@@ -12,9 +12,8 @@ class Question(models.Model):
     @admin.display(
           boolean=True,
           ordering='pub_date',
-          description='Published Recently ?'
+          description='Published Recently?'
     )
-
    
     def was_published_recently(self):
         #Check pub_date is within the last day (around 24 hours)

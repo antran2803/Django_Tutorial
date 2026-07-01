@@ -6,5 +6,5 @@ class Poll(models.Model):
     message = models.TextField()
     time = models.DateField()
     status = models.BooleanField(default=False)
-def  __Str__(self):
-    return self.title
+    def  __Str__(self):
+     return self.title

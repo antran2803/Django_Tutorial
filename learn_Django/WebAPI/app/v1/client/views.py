@@ -1,22 +1,32 @@
 from rest_framework import status 
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view ,APIView
 from rest_framework.response import Response
 from app.models import Client,Post
 from .serializers import ClientV1Serializer,PostV1Serializer
 
-@api_view(['GET','POST'])
-def client_list(request):
-    if request.method == "GET":
-        client = Client.objects.all()
+# @api_view(['GET','POST'])
+# def client_list(request):
+#     if request.method == "GET":
+#         client = Client.objects.all()
+#         serializer = ClientV1Serializer(client, many=True)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
+#     elif request.method == "POST":
+#         serializer =ClientV1Serializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data ,status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class ClientListView(APIView): 
+    def get(self,request):
+        client  = client.objects.all()
         serializer = ClientV1Serializer(client, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    elif request.method == "POST":
-        serializer =ClientV1Serializer(data=request.data)
+    def post(self,request):
+        serializer = ClientV1Serializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data ,status=status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
 @api_view(['GET','PUT','DELETE'])
 def client_detail(request,pk):
     try:

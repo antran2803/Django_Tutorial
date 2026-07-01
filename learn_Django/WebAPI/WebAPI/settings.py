@@ -38,17 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app'
-     'wagtail.contrib.forms',
-      'wagtail.contrib.redirects',
-'wagtail.embeds',
-'wagtail.sites',
-'wagtail.users',
-'wagtail.snippets',
-'wagtail.documents',
-'wagtail.images',
-'wagtail.search',
-'wagtail.admin',
-'wagtail',
+#      'wagtail.contrib.forms',
+#       'wagtail.contrib.redirects',
+# 'wagtail.embeds',
+# 'wagtail.sites',
+# 'wagtail.users',
+# 'wagtail.snippets',
+# 'wagtail.documents',
+# 'wagtail.images',
+# 'wagtail.search',
+# 'wagtail.admin',
+# 'wagtail',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,43 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+<div class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div
+      class="relative isolate overflow-clip bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0"
+    >
+      <div
+        aria-hidden="true"
+        class="absolute right-0 top-0 -z-10 aspect-square w-full max-w-3xl translate-x-3/4 rounded-full bg-pink-500/60 blur-[10rem] lg:-top-[40rem] lg:left-1/2 lg:-translate-x-1/2"
+      ></div>
+      <div
+        class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-24 lg:text-start"
+      >
+        <h2
+          class="text-3xl font-semibold tracking-tight text-white sm:text-4xl"
+        >
+          {{ value.title }}
+        </h2>
+        <div class="mt-6 text-base text-yellow-400 [&_p]:mb-4">
+          {{ value.text|richtext }}
+        </div>
+        <div
+          class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start"
+        >
+          {% if value.button_page %}
+          <a
+            href="{{value.button_page.url}}"
+            class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >{{value.button_text}}</a
+          >
+          {% elif value.button_url %}
+          <a
+            href="{{value.button_url}}"
+            class="text-sm font-semibold leading-6 text-white"
+            >{{value.button_text}}</a
+          >
+          {% endif %}
+        </div>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>

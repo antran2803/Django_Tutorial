@@ -1,0 +1,41 @@
+{% load wagtailimages_tags %}
+
+<section class="py-10">
+  <div class="mx-auto max-w-6xl px-6 sm:px-8">
+    <div class="max-w-3xl">
+      <h2 class="text-3xl font-bold leading-tight text-zinc-950 sm:text-4xl">
+        {{ self.title }}
+      </h2>
+      {% if self.text %}
+        <p class="mt-4 text-lg leading-8 text-zinc-600">
+          {{ self.text }}
+        </p>
+      {% endif %}
+    </div>
+
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {% for card in self.cards %}
+        <article class="overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+          {% image card.image fill-600x360 as img %}
+          <img
+            src="{{ img.url }}"
+            alt="{{ img.alt }}"
+            class="h-52 w-full object-cover"
+          >
+
+          <div class="p-6">
+            <h3 class="text-xl font-bold leading-snug text-zinc-950">
+              {{ card.title }}
+            </h3>
+            <p class="mt-3 leading-7 text-zinc-600">
+              {{ card.text|truncatechars:140 }}
+            </p>
+              <a href="{{ card.url }}" class="mt-5 inline-flex items-center rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-600">
+                {{ card.button_text }}
+              </a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

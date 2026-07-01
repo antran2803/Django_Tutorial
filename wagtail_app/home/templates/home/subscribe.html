@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-homepage bg-zinc-50 text-zinc-950{% endblock %}
+
+{% block content %}
+{% for subscriber in subscribers %}
+    <div class="bg-zinc-50 text-zinc-950">
+        <p>{{ subscriber.email }} - {{ subscriber.fullname }}</p>
+        
+        
+    </div>
+{% empty %}
+    <p>No subscribers yet.</p>
+{% endfor %}
+
+{% endblock %}

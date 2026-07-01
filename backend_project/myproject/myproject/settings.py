@@ -41,17 +41,16 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'wagtail.contrib.forms',
-    'wagtail.contrib.redirects',
-    'wagtail.embeds',
-    'wagtail.sites',
-    'wagtail.users',
-    'wagtail.snippets',
-    'wagtail.documents',
-    'wagtail.images',
-    'wagtail.search',
-    'wagtail.admin',
-    'wagtail',
-    'wagtail.contrib.routable_page',
+'wagtail.contrib.redirects',
+'wagtail.embeds',
+'wagtail.sites',
+'wagtail.users',
+'wagtail.snippets',
+'wagtail.documents',
+'wagtail.images',
+'wagtail.search',
+'wagtail.admin',
+'wagtail',
     'rest_framework',
     'my_BE'
 ]
@@ -64,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
 ROOT_URLCONF = 'myproject.urls'
@@ -82,9 +82,14 @@ TEMPLATES = [
         },
     },
 ]
-
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail_pgsearchbackend.backend',
+        'SEARCH_CONFIG': 'english',
+    }
+}
 WSGI_APPLICATION = 'myproject.wsgi.application'
-
+WAGTAIL_SITE_NAME = "My Blog"
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases

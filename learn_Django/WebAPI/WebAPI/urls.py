@@ -21,6 +21,6 @@ from wagtail.admin import urls as wagtailadmin_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/',include('app.v1.urls')),
-    path('cms/', include(wagtailadmin_urls)),
-    path('', include(wagtail_urls)),
+    # path('cms/', include(wagtailadmin_urls)),
+    # path('', include(wagtail_urls)),
 ]
